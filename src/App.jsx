@@ -1,25 +1,14 @@
 import './App.css';
 import GuessForm from './components/GuessForm';
 import ResultsDisplay from './components/ResultsDisplay';
-import checkGuess from './components/GameLogic';
-import { useState } from 'react';
+import useGame from './states/useGame';
 
 function App() {
-  const [randomNumber, setRandomNumber] = useState(null);
-  const [isEqual, setIsEqual] = useState(false);
-  const [usersGuess, setUsersGuess] = useState(null);
-
-  const handleGame = guess => {
-    const generateNumber = Math.floor(Math.random() * 10) + 1;
-    setRandomNumber(generateNumber);
-    setUsersGuess(guess);
-    setIsEqual(checkGuess(guess, generateNumber));
-  };
-
+  const { usersGuess, randomNumber, isEqual, playGame } = useGame();
   return (
     <div className='bg-red-500 font-bold flex items-center flex-col'>
       <h2>guess the number 1-10</h2>
-      <GuessForm onSubmit={handleGame} />
+      <GuessForm onSubmit={playGame} />
       <ResultsDisplay
         usersGuess={usersGuess}
         randomNumber={randomNumber}
