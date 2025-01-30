@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 export default function ResultsDisplay({ usersGuess, randomNumber, isEqual }) {
   if (randomNumber === null) return null;
 
